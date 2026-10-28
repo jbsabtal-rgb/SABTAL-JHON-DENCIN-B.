@@ -1,0 +1,58 @@
+
+public class Main {
+    public static void main(String[] args) {
+
+        int[] numbers = {35, 20, 15, 40, 50, 10, 25};
+        int[] minHeap = new int[7];
+        int[] maxHeap = new int[7];
+
+        int size = 0;
+
+        System.out.println("MIN HEAP");
+
+        for (int n : numbers) {
+            minHeap[size] = n;
+            int i = size;
+
+            while (i > 0 && minHeap[i] < minHeap[(i - 1) / 2]) {
+                int temp = minHeap[i];
+                minHeap[i] = minHeap[(i - 1) / 2];
+                minHeap[(i - 1) / 2] = temp;
+                i = (i - 1) / 2;
+            }
+
+            size++;
+
+            for (int j = 0; j < size; j++) {
+                System.out.print(minHeap[j] + " ");
+            }
+            System.out.println();
+        }
+
+        size = 0;
+
+        System.out.println("\nMAX HEAP");
+
+        for (int n : numbers) {
+            maxHeap[size] = n;
+            int i = size;
+
+            while (i > 0 && maxHeap[i] > maxHeap[(i - 1) / 2]) {
+                int temp = maxHeap[i];
+                maxHeap[i] = maxHeap[(i - 1) / 2];
+                maxHeap[(i - 1) / 2] = temp;
+                i = (i - 1) / 2;
+            }
+
+            size++;
+
+            for (int j = 0; j < size; j++) {
+                System.out.print(maxHeap[j] + " ");
+            }
+            System.out.println();
+        }
+
+        System.out.println("\nMinimum value: " + minHeap[0]);
+        System.out.println("Maximum value: " + maxHeap[0]);
+    }
+}
