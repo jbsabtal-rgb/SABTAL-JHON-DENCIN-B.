@@ -1,0 +1,94 @@
+public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+        int[] heap = new int[10];
+        int size = 0;
+
+        // Insert initial values
+        int[] numbers = {5, 10, 15, 20, 25, 30};
+
+        for (int n : numbers) {
+            heap[size] = n;
+            int i = size;
+
+            while (i > 0 && heap[i] < heap[(i - 1) / 2]) {
+                int temp = heap[i];
+                heap[i] = heap[(i - 1) / 2];
+                heap[(i - 1) / 2] = temp;
+                i = (i - 1) / 2;
+            }
+
+            size++;
+        }
+
+        System.out.println("Initial Heap: " +
+                java.util.Arrays.toString(java.util.Arrays.copyOf(heap, size)));
+
+        // Insert 8
+        heap[size] = 8;
+        int i = size;
+
+        while (i > 0 && heap[i] < heap[(i - 1) / 2]) {
+            int temp = heap[i];
+            heap[i] = heap[(i - 1) / 2];
+            heap[(i - 1) / 2] = temp;
+            i = (i - 1) / 2;
+        }
+        size++;
+
+        System.out.println("After inserting 8: " +
+                java.util.Arrays.toString(java.util.Arrays.copyOf(heap, size)));
+
+        // Peek
+        System.out.println("Minimum element: " + heap[0]);
+
+        // Extract minimum
+        int min = heap[0];
+        heap[0] = heap[size - 1];
+        size--;
+
+        i = 0;
+        while (i * 2 + 1 < size) {
+            int small = i * 2 + 1;
+
+            if (small + 1 < size && heap[small + 1] < heap[small]) {
+                small++;
+            }
+
+            if (heap[i] <= heap[small]) {
+                break;
+            }
+
+            int temp = heap[i];
+            heap[i] = heap[small];
+            heap[small] = temp;
+
+            i = small;
+        }
+
+        System.out.println("Extracted value: " + min);
+        System.out.println("After extraction: " +
+        
+                java.util.Arrays.toString(java.util.Arrays.copyOf(heap, size)));
+
+        // Insert 3
+        heap[size] = 3;
+        i = size;
+
+        while (i > 0 && heap[i] < heap[(i - 1) / 2]) {
+            int temp = heap[i];
+            heap[i] = heap[(i - 1) / 2];
+            heap[(i - 1) / 2] = temp;
+            i = (i - 1) / 2;
+        }
+        size++;
+
+        System.out.println("After inserting 3: " +
+                java.util.Arrays.toString(java.util.Arrays.copyOf(heap, size)));
+
+        System.out.println("Minimum element: " + heap[0]);
+    
+
+	}
+
+}
